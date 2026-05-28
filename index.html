@@ -12,3 +12,74 @@
     }
     .box {
       background: white;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 420px;
+      margin: auto;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    input {
+      padding: 12px;
+      width: 85%;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-top: 15px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      background: #046a38;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 25px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h1>Welcome to our wedding</h1>
+    <p>Please enter your name to find your table.</p>
+
+    <input id="nameInput" type="text" placeholder="Enter your name">
+    <br>
+    <button onclick="findTable()">Search</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const guests = [
+      { name: "Miquelle", table: "Table 1" },
+      { name: "Wilhelm", table: "Table 1" },
+      { name: "Shanell", table: "Table 2" },
+      { name: "Landie", table: "Table 2" },
+      { name: "Chane", table: "Table 3" }
+    ];
+
+    function findTable() {
+      const input = document.getElementById("nameInput").value.toLowerCase().trim();
+
+      const guest = guests.find(g =>
+        g.name.toLowerCase().includes(input)
+      );
+
+      const result = document.getElementById("result");
+
+      if (guest && input !== "") {
+        result.innerHTML = `Hi ${guest.name}! You are seated at <br><span style="font-size:28px;">${guest.table}</span>`;
+      } else {
+        result.innerHTML = "We could not find that name. Please check spelling or ask the MC.";
+      }
+    }
+  </script>
+
+</body>
+</html>
